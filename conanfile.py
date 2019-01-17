@@ -1,7 +1,6 @@
 import os
 import shutil
 from conans import ConanFile, tools
-from conans.errors import ConanInvalidConfiguration
 
 
 class QuantStageApiConan(ConanFile):
@@ -37,6 +36,10 @@ class QuantStageApiConan(ConanFile):
             elif self.settings.compiler.version in ['5', '5.4']:
                 tools.unzip('bin/linux-gcc5.4.zip')
                 shutil.move('linux-gcc5.4/QuantBaseApi/libprotobuf.so.13.0.0', 'linux-gcc5.4/QuantBaseApi/libprotobuf.so.13')
+            for root, _, files in os.walk('.'):
+                for momo in files:
+                    if '.so' in momo:
+                        os.chmod(os.path.join(root, momo), 0o755)
         elif self.settings.os == 'Windows':
             if self.settings.compiler.version == '12':
                 tools.unzip('bin/lib-x64-msvc-12.0-Release.zip')
