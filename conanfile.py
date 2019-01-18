@@ -6,7 +6,7 @@ from conans import ConanFile, tools
 class QuantStageApiConan(ConanFile):
 
     name = "QuantStageApi"
-    version = "20190107"
+    version = "20190118"
 
     # https://docs.conan.io/en/latest/reference/conanfile/attributes.html#settings
     settings = {
